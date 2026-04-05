@@ -103,3 +103,41 @@ class TFC(models.Model):
 
     def __str__(self):
         return self.titulo        
+
+class Formacao(models.Model):
+    nome = models.CharField(max_length=100)
+    entidade = models.CharField(max_length=100)
+    data_inicio = models.DateField()
+    data_fim = models.DateField(blank=True, null=True)
+    descricao = models.TextField(blank=True)
+    imagem = models.ImageField(upload_to='formacoes/', blank=True, null=True)
+
+    competencias = models.ManyToManyField(
+        Competencia,
+        related_name='formacoes',
+        blank=True
+    )
+
+    def __str__(self):
+        return self.nome
+
+class MakingOf(models.Model):
+    titulo = models.CharField(max_length=100)
+    data = models.DateField()
+    foto = models.ImageField(upload_to='making_of/')
+    ferramentas_ia = models.TextField(blank=True)
+    descricao = models.TextField()
+    erros = models.TextField(blank=True)
+    correcao = models.TextField(blank=True)
+    justificacao = models.TextField(blank=True)
+
+    projeto = models.ForeignKey(
+        Projeto,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='makingofs'
+    )
+
+    def __str__(self):
+        return self.titulo
