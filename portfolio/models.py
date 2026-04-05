@@ -100,6 +100,11 @@ class TFC(models.Model):
     resumo = models.TextField()
     orientadores = models.CharField(max_length=200)
     interesse = models.PositiveIntegerField(help_text='Escala de 1 a 5')
+    licenciatura = models.CharField(max_length=200)
+    email = models.EmailField()
+    rating = models.IntegerField()
+    pdf = models.URLField(null=True, blank=True)
+    imagem = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.titulo        

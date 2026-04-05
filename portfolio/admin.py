@@ -56,4 +56,4 @@ class TFCAdmin(admin.ModelAdmin):
 @admin.register(MakingOf)
 class MakingOfAdmin(admin.ModelAdmin):
     list_display = ("titulo", "data")
-    search_fields = ("titulo",)
+    search_fields = ("titulo",) 
