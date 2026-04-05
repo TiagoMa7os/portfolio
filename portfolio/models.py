@@ -30,3 +30,31 @@ class UnidadeCurricular(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Tecnologia(models.Model):
+    nome = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=50, blank=True)
+    descricao = models.TextField(blank=True)
+    logo = models.ImageField(upload_to='tecnologias/')
+    link_oficial = models.URLField()
+    interesse = models.PositiveIntegerField(help_text='Escala de 1 a 5')
+
+    def __str__(self):
+        return self.nome
+
+
+class Competencia(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    nivel = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
+
+
+class Tag(models.Model):
+    nome = models.CharField(max_length=50)
+    descricao = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.nome
