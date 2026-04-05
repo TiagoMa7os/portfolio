@@ -58,3 +58,48 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Projeto(models.Model):
+    titulo = models.CharField(max_length=100)
+    descricao = models.TextField()
+    conceitos_aplicados = models.TextField()
+    imagem = models.ImageField(upload_to='projetos/')
+    data = models.DateField()
+    github_url = models.URLField()
+    video_demo_url = models.URLField(blank=True)
+
+    unidade_curricular = models.ForeignKey(
+        UnidadeCurricular,
+        on_delete=models.CASCADE,
+        related_name='projetos'
+    )
+    tecnologias = models.ManyToManyField(
+        Tecnologia,
+        related_name='projetos',
+        blank=True
+    )
+    competencias = models.ManyToManyField(
+        Competencia,
+        related_name='projetos',
+        blank=True
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        related_name='projetos',
+        blank=True
+    )
+
+    def __str__(self):
+        return self.titulo
+
+
+class TFC(models.Model):
+    titulo = models.CharField(max_length=200)
+    autores = models.CharField(max_length=200)
+    ano = models.PositiveIntegerField()
+    resumo = models.TextField()
+    orientadores = models.CharField(max_length=200)
+    interesse = models.PositiveIntegerField(help_text='Escala de 1 a 5')
+
+    def __str__(self):
+        return self.titulo        
