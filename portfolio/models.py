@@ -17,10 +17,10 @@ class UnidadeCurricular(models.Model):
     ano = models.PositiveIntegerField()
     semestre = models.PositiveIntegerField()
     ects = models.PositiveIntegerField()
-    descricao = models.TextField()
-    imagem = models.ImageField(upload_to='ucs/')
-    docente = models.CharField(max_length=150)
-    link_docente = models.URLField()
+    descricao = models.TextField(blank=True)
+    imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
+    docente = models.CharField(max_length=150, blank=True)
+    link_docente = models.URLField(blank=True)
 
     licenciatura = models.ForeignKey(
         Licenciatura,
@@ -94,17 +94,20 @@ class Projeto(models.Model):
 
 
 class TFC(models.Model):
-    titulo = models.CharField(max_length=200)
-    autores = models.CharField(max_length=200)
+    titulo = models.CharField(max_length=250)
+    autores = models.CharField(max_length=250)
+    orientador = models.CharField(max_length=250)
+    parceria = models.CharField(max_length=250, blank=True)
+    licenciatura = models.CharField(max_length=250)
     ano = models.PositiveIntegerField()
-    resumo = models.TextField()
-    orientadores = models.CharField(max_length=200)
-    interesse = models.PositiveIntegerField(help_text='Escala de 1 a 5')
-    licenciatura = models.CharField(max_length=200)
-    email = models.EmailField()
-    rating = models.IntegerField()
-    pdf = models.URLField(null=True, blank=True)
-    imagem = models.URLField(null=True, blank=True)
+    email = models.EmailField(blank=True)
+    sumario = models.TextField()
+    pdf = models.URLField(blank=True)
+    imagem = models.URLField(blank=True)
+    palavras_chave = models.TextField(blank=True)
+    areas = models.TextField(blank=True)
+    tecnologias_usadas = models.TextField(blank=True)
+    rating = models.PositiveIntegerField()
 
     def __str__(self):
         return self.titulo        

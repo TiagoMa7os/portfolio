@@ -49,7 +49,7 @@ class FormacaoAdmin(admin.ModelAdmin):
 
 @admin.register(TFC)
 class TFCAdmin(admin.ModelAdmin):
-    list_display = ("titulo", "ano", "interesse")
+    list_display = ("titulo", "ano", "rating")
     search_fields = ("titulo",)
 
 
