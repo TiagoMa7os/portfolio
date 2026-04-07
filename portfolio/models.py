@@ -15,7 +15,7 @@ class UnidadeCurricular(models.Model):
     nome = models.CharField(max_length=100)
     sigla = models.CharField(max_length=20)
     ano = models.PositiveIntegerField()
-    semestre = models.PositiveIntegerField()
+    semestre = models.CharField(max_length=20)
     ects = models.PositiveIntegerField()
     descricao = models.TextField(blank=True)
     imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
