@@ -8,11 +8,18 @@ class LicenciaturaAdmin(admin.ModelAdmin):
     search_fields = ("nome",)
 
 
+@admin.register(Docente)
+class DocenteAdmin(admin.ModelAdmin):
+    list_display = ("nome",)
+    search_fields = ("nome",)
+
+
 @admin.register(UnidadeCurricular)
 class UnidadeCurricularAdmin(admin.ModelAdmin):
     list_display = ("nome", "ano", "semestre", "ects")
     search_fields = ("nome",)
     list_filter = ("ano", "semestre")
+    filter_horizontal = ("docentes",)
 
 
 @admin.register(Projeto)
@@ -51,9 +58,10 @@ class FormacaoAdmin(admin.ModelAdmin):
 class TFCAdmin(admin.ModelAdmin):
     list_display = ("titulo", "ano", "rating")
     search_fields = ("titulo",)
+    filter_horizontal = ("tecnologias", "orientadores")
 
 
 @admin.register(MakingOf)
 class MakingOfAdmin(admin.ModelAdmin):
     list_display = ("titulo", "data")
-    search_fields = ("titulo",) 
+    search_fields = ("titulo",)
