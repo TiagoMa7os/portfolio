@@ -28,7 +28,6 @@ class UnidadeCurricular(models.Model):
     semestre = models.CharField(max_length=200)
     ects = models.PositiveIntegerField()
     descricao = models.TextField(blank=True)
-    imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
 
     licenciatura = models.ForeignKey(
         Licenciatura,
@@ -50,9 +49,9 @@ class Tecnologia(models.Model):
     nome = models.CharField(max_length=200)
     tipo = models.CharField(max_length=200, blank=True)
     descricao = models.TextField(blank=True)
-    logo = models.ImageField(upload_to='tecnologias/')
-    link_oficial = models.URLField()
-    interesse = models.PositiveIntegerField(help_text='Escala de 1 a 5')
+    logo = models.ImageField(upload_to='tecnologias/',blank=True, null=True)
+    link_oficial = models.URLField(blank=True)
+    interesse = models.PositiveIntegerField(help_text='Escala de 1 a 5', blank=True, null=True)
 
     def __str__(self):
         return self.nome
