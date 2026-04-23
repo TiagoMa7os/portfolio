@@ -1,0 +1,20 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Apagar{% endblock %}
+{% block page_title %}Apagar{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+    <h2 class="panel-title">Confirmar remoção</h2>
+
+    <p>Tens a certeza que queres apagar <strong>{{ object }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <a href="javascript:history.back()" class="btn btn-neutral">Cancelar</a>
+            <button type="submit" class="btn">Sim, apagar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

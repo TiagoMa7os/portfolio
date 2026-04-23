@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-*3@uq((876v+q-#1$o+f*k1@6fsd0wm#j^_fy8mex17q(_da(1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "portfolio",
+    "escola",
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,4 @@ STATIC_URL = "static/"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR  / 'staticfiles'
