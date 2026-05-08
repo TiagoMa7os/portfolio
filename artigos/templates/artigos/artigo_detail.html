@@ -1,0 +1,72 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}{{ artigo.titulo }}{% endblock %}
+{% block page_title %}Artigo{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+    <h2 class="panel-title">{{ artigo.titulo }}</h2>
+
+    <p class="muted">
+        Por {{ artigo.autor.username }} · {{ artigo.data_criacao|date:"d/m/Y H:i" }}
+    </p>
+
+    {% if artigo.fotografia %}
+        <img src="{{ artigo.fotografia.url }}" width="500" style="max-width:100%; margin:16px 0;">
+    {% endif %}
+
+    <p>{{ artigo.texto|linebreaks }}</p>
+
+    {% if artigo.link_externo %}
+        <p>
+            <a href="{{ artigo.link_externo }}" target="_blank">Link externo</a>
+        </p>
+    {% endif %}
+
+    <div class="actions">
+        <a href="{% url 'artigo_like' artigo.pk %}" class="btn btn-primary">
+            ❤️ Gostar ({{ artigo.total_likes }})
+        </a>
+
+        {% if is_autor and artigo.autor == user %}
+            <a href="{% url 'artigo_update' artigo.pk %}" class="btn btn-edit">Editar</a>
+        {% endif %}
+
+        <a href="{% url 'artigo_list' %}" class="btn btn-neutral">Voltar</a>
+    </div>
+
+    <hr>
+
+    <h3>Comentários</h3>
+
+    {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-grid">
+                {{ form.as_p }}
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Comentar</button>
+                </div>
+            </div>
+        </form>
+    {% else %}
+        <p>
+            <a href="{% url 'login' %}">Entra</a> para comentar.
+        </p>
+    {% endif %}
+
+    <div style="margin-top:20px;">
+        {% for comentario in artigo.comentarios.all %}
+            <div class="card">
+                <strong>{{ comentario.autor.username }}</strong>
+                <span class="muted"> · {{ comentario.data_criacao|date:"d/m/Y H:i" }}</span>
+                <p>{{ comentario.texto }}</p>
+            </div>
+        {% empty %}
+            <p class="muted">Ainda não existem comentários.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+{% load markdownify %}
+
+{% block title %}Sobre{% endblock %}
+{% block page_title %}Sobre esta aplicação{% endblock %}
+
+{% block content %}
+
+<div class="glass panel">
+
+    <h2>Arquitetura MVT do Django</h2>
+
+    <p>
+        O Django utiliza a arquitetura MVT (Model-View-Template).
+    </p>
+
+    <ul>
+        <li><strong>Model:</strong> representa os dados e a base de dados.</li>
+        <li><strong>View:</strong> contém a lógica da aplicação e processa pedidos.</li>
+        <li><strong>Template:</strong> define a interface gráfica apresentada ao utilizador.</li>
+    </ul>
+
+    <p>
+        Fluxo: o utilizador faz um pedido → a view processa → o model vai à base de dados → os dados são enviados para o template → o utilizador vê a página.
+    </p>
+
+    <h3>Desenho da arquitetura</h3>
+    <img src="{% static 'portfolio/img/mvt.jpg' %}" width="400">
+
+
+    <h3>Vídeo explicativo</h3>
+
+    <iframe width="560" height="315"
+        src="COLOCA_AQUI_O_LINK_DO_VIDEO"
+        title="YouTube video player"
+        frameborder="0"
+        allowfullscreen>
+    </iframe>
+
+
+    <h2>Modelação</h2>
+
+    <p>
+        A aplicação foi modelada utilizando modelos Django definidos no ficheiro models.py.
+        Cada modelo corresponde a uma tabela na base de dados.
+    </p>
+
+    <p>
+        Os relacionamentos entre entidades são feitos com ForeignKey e ManyToMany.
+    </p>
+
+    <h3>Diagrama ER</h3>
+    <img src="{% static 'portfolio/img/er.jpg' %}" width="400">
+
+
+    <h2>Tecnologias</h2>
+
+    <h3>Backend</h3>
+    <ul>
+        <li>Django – framework web em Python</li>
+    </ul>
+
+    <h3>Frontend</h3>
+    <ul>
+        <li>HTML – estrutura das páginas</li>
+        <li>CSS – estilo visual</li>
+    </ul>
+
+    <h3>Base de dados</h3>
+    <ul>
+        <li>SQLite – base de dados usada no desenvolvimento</li>
+    </ul>
+
+    <h3>Outros</h3>
+    <ul>
+        <li>Git – controlo de versões</li>
+        <li>GitHub – alojamento do código</li>
+        <li>GitHub Codespaces – ambiente de desenvolvimento online</li>
+    </ul>
+
+
+    <h2>Estrutura da aplicação</h2>
+
+    <p>Mapa de navegação da aplicação:</p>
+
+    <img src="{% static 'portfolio/img/estrutura.jpg' %}" width="400">
+
+
+    <h2>Repositório GitHub</h2>
+
+    <a href="https://github.com/TiagoMa7os/portfolio" target="_blank">
+        Ver repositório
+    </a>
+
+    <p>
+        O GitHub foi utilizado para gerir versões do projeto, permitindo guardar alterações,
+        acompanhar o desenvolvimento e recuperar versões anteriores.
+    </p>
+
+
+    <h2>Making Of</h2>
+
+    <div>
+        {{ making_of_texto|markdownify }}
+    </div>
+
+</div>
+
+{% endblock %}

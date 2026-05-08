@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "portfolio",
     "escola",
-    "accounts"
+    "accounts",
+    "markdownify.apps.MarkdownifyConfig",
+    "artigos",
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,24 @@ STATIC_URL = "static/"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR  / 'staticfiles'
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            "a", "strong", "b",
+            "blockquote", "em", "i",
+            "ul", "li", "ol",
+            "p",
+            "h1", "h2", "h3", "h4",
+        ]
+    }
+}
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "tiagomiguelmatos@gmail.com"
+EMAIL_HOST_PASSWORD = "aogd fiec ulvt comh"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SITE_URL = "https://glowing-space-goggles-7vv65p56xpq92xx57-8000.app.github.dev"

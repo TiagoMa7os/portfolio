@@ -33,6 +33,7 @@ urlpatterns = [
     ##path("", include("escola.urls")),  #  rota para app escola sem precisar de escrever "escola"
     path("", include("portfolio.urls")),
     path("accounts/", include("accounts.urls")),
+    path("", include("artigos.urls")),
     
 ]
 

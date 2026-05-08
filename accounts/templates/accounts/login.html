@@ -11,6 +11,12 @@
         <p style="color:red;">{{ erro }}</p>
     {% endif %}
 
+    {% if mensagem %}
+        <p style="color:green;">{{ mensagem }}</p>
+    {% endif %}
+
+    <h3>Login com username e password</h3>
+
     <form method="post">
         {% csrf_token %}
 
@@ -30,5 +36,29 @@
             </div>
         </div>
     </form>
+
+    <hr>
+
+    <h3>Login com link mágico</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-grid">
+            <div class="field">
+                <label class="field-label">Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">Enviar link mágico</button>
+            </div>
+        </div>
+    </form>
+
+    <p>
+        Ainda não tens conta?
+        <a href="{% url 'registo' %}">Registar</a>
+    </p>
 </div>
 {% endblock %}

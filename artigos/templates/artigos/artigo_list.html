@@ -1,0 +1,48 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Artigos{% endblock %}
+{% block page_title %}Artigos{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 class="panel-title" style="margin:0;">Lista de Artigos</h2>
+
+        {% if is_autor %}
+            <a href="{% url 'artigo_create' %}" class="btn btn-primary">Novo artigo</a>
+        {% endif %}
+    </div>
+
+    {% if artigos %}
+        <div class="grid">
+            {% for artigo in artigos %}
+                <div class="glass card">
+                    <h3>{{ artigo.titulo }}</h3>
+
+                    <p class="muted">
+                        Por {{ artigo.autor.username }} · {{ artigo.data_criacao|date:"d/m/Y H:i" }}
+                    </p>
+
+                    {% if artigo.fotografia %}
+                        <img src="{{ artigo.fotografia.url }}" width="300" style="margin:12px 0;">
+                    {% endif %}
+
+                    <p>{{ artigo.texto|truncatechars:180 }}</p>
+
+                    <p>❤️ {{ artigo.total_likes }} gostos</p>
+
+                    <div class="actions">
+                        <a href="{% url 'artigo_detail' artigo.pk %}" class="btn btn-neutral">Ver artigo</a>
+
+                        {% if is_autor and artigo.autor == user %}
+                            <a href="{% url 'artigo_update' artigo.pk %}" class="btn btn-edit">Editar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">Ainda não existem artigos.</p>
+    {% endif %}
+</div>
+{% endblock %}
