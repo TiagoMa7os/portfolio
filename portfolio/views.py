@@ -86,3 +86,6 @@ Estas alterações permitiram tornar a aplicação mais organizada, funcional e 
 """
 
         return context
+
+class HomeView(TemplateView):
+    template_name = "portfolio/home.html"

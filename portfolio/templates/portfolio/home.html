@@ -1,0 +1,42 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Home{% endblock %}
+{% block page_title %}Página Inicial{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+
+    <h1>Bem-vindo ao meu Portfólio</h1>
+
+    <p class="muted">
+        Esta aplicação foi desenvolvida em Django no âmbito da unidade curricular de Programação Web.
+    </p>
+
+    <p>
+        Aqui podes consultar os meus projetos, artigos, tecnologias utilizadas e informações sobre o desenvolvimento da aplicação.
+    </p>
+
+    <div class="grid" style="margin-top:24px;">
+
+        <div class="glass card">
+            <h3>Projetos</h3>
+            <p>Consulta os projetos desenvolvidos ao longo do semestre.</p>
+            <a href="{% url 'projeto_list' %}" class="btn btn-primary">Ver projetos</a>
+        </div>
+
+        <div class="glass card">
+            <h3>Artigos</h3>
+            <p>Lê artigos sobre tecnologia, programação e soft-skills.</p>
+            <a href="{% url 'artigo_list' %}" class="btn btn-primary">Ver artigos</a>
+        </div>
+
+        <div class="glass card">
+            <h3>Sobre</h3>
+            <p>Conhece a arquitetura, tecnologias e making-of da aplicação.</p>
+            <a href="{% url 'sobre' %}" class="btn btn-primary">Ver sobre</a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -24,7 +24,7 @@
                     </p>
 
                     {% if artigo.fotografia %}
-                        <img src="{{ artigo.fotografia.url }}" width="300" style="margin:12px 0;">
+                        <img src="{{ artigo.fotografia.url }}" width="300" style="max-width:100%; margin:12px 0;">
                     {% endif %}
 
                     <p>{{ artigo.texto|truncatechars:180 }}</p>
@@ -36,6 +36,7 @@
 
                         {% if is_autor and artigo.autor == user %}
                             <a href="{% url 'artigo_update' artigo.pk %}" class="btn btn-edit">Editar</a>
+                            <a href="{% url 'artigo_delete' artigo.pk %}" class="btn btn-danger">Apagar</a>
                         {% endif %}
                     </div>
                 </div>

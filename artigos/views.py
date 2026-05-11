@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from .models import Artigo
 from .forms import ArtigoForm, ComentarioForm
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
 
 
 def is_autor(user):
@@ -83,3 +85,18 @@ def artigo_like(request, pk):
             artigo.likes.add(request.user)
 
     return redirect("artigo_detail", pk=artigo.pk)
+
+@login_required(login_url="login")
+def artigo_delete(request, pk):
+    artigo = get_object_or_404(Artigo, pk=pk)
+
+    if not is_autor(request.user) or artigo.autor != request.user:
+        return redirect("artigo_list")
+
+    if request.method == "POST":
+        artigo.delete()
+        return redirect("artigo_list")
+
+    return render(request, "artigos/artigo_confirm_delete.html", {
+        "artigo": artigo
+    })

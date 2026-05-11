@@ -1,0 +1,21 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Apagar artigo{% endblock %}
+{% block page_title %}Apagar artigo{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+
+    <h2>Apagar artigo</h2>
+
+    <p>Tens a certeza que queres apagar "{{ artigo.titulo }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            Apagar
+        </button>
+    </form>
+
+</div>
+{% endblock %}

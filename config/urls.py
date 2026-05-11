@@ -18,16 +18,13 @@ Including another URLconf
 ## ficheiro projects/urls.py
 
 from django.contrib import admin
-from django.urls import path, include              #     <- adicionar include 
+from django.urls import path, include              
 from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import redirect
 
-def home_redirect(request):
-    return redirect("projeto_list")
 
 urlpatterns = [
-    path("", home_redirect),
     path("admin/", admin.site.urls),
     ##path("escola/", include("escola.urls")), 
     ##path("", include("escola.urls")),  #  rota para app escola sem precisar de escrever "escola"
@@ -37,5 +34,3 @@ urlpatterns = [
     
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
