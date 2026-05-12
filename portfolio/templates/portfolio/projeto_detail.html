@@ -1,0 +1,67 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}{{ projeto.titulo }}{% endblock %}
+{% block page_title %}{{ projeto.titulo }}{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+    <h1 class="panel-title">{{ projeto.titulo }}</h1>
+
+    {% if projeto.imagem %}
+        <img src="{{ projeto.imagem.url }}" style="max-width:100%; border-radius:14px; margin:20px 0;">
+    {% endif %}
+
+    <h3>Descrição</h3>
+    <p>{{ projeto.descricao }}</p>
+
+    <h3>Conceitos aplicados</h3>
+    <p>{{ projeto.conceitos_aplicados }}</p>
+
+    <h3>Informação</h3>
+    <p><strong>Data:</strong> {{ projeto.data|date:"d/m/Y" }}</p>
+    <p><strong>Unidade curricular:</strong> {{ projeto.unidade_curricular.nome }}</p>
+
+    <h3>Tecnologias</h3>
+    <ul>
+        {% for tecnologia in projeto.tecnologias.all %}
+            <li>{{ tecnologia.nome }}</li>
+        {% empty %}
+            <li>Sem tecnologias associadas.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Competências</h3>
+    <ul>
+        {% for competencia in projeto.competencias.all %}
+            <li>{{ competencia.nome }} — nível {{ competencia.nivel }}/5</li>
+        {% empty %}
+            <li>Sem competências associadas.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Tags</h3>
+    <ul>
+        {% for tag in projeto.tags.all %}
+            <li>{{ tag.nome }}</li>
+        {% empty %}
+            <li>Sem tags associadas.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="actions">
+        {% if projeto.github_url %}
+            <a href="{{ projeto.github_url }}" target="_blank" class="btn btn-primary">GitHub</a>
+        {% endif %}
+
+        {% if projeto.video_demo_url %}
+            <a href="{{ projeto.video_demo_url }}" target="_blank" class="btn btn-edit">Vídeo demo</a>
+        {% endif %}
+
+        {% if is_gestor %}
+            <a href="{% url 'projeto_update' projeto.pk %}" class="btn">Editar</a>
+        {% endif %}
+
+        <a href="{% url 'projeto_list' %}" class="btn btn-neutral">Voltar</a>
+    </div>
+</div>
+{% endblock %}

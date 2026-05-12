@@ -1,9 +1,10 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from .models import Projeto
+from .models import Projeto, Tecnologia, Competencia, Formacao, MakingOf
 from .form import ProjetoForm
+
 
 
 def is_gestor(user):
@@ -27,6 +28,15 @@ class ProjetoListView(ListView):
         context["is_gestor"] = is_gestor(self.request.user)
         return context
 
+class ProjetoDetailView(DetailView):
+    model = Projeto
+    template_name = "portfolio/projeto_detail.html"
+    context_object_name = "projeto"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["is_gestor"] = is_gestor(self.request.user)
+        return context
 
 class ProjetoCreateView(GestorRequiredMixin, CreateView):
     model = Projeto
@@ -89,3 +99,23 @@ Estas alterações permitiram tornar a aplicação mais organizada, funcional e 
 
 class HomeView(TemplateView):
     template_name = "portfolio/home.html"
+
+class TecnologiaListView(ListView):
+    model = Tecnologia
+    template_name = "portfolio/tecnologia_list.html"
+    context_object_name = "tecnologias"
+
+class CompetenciaListView(ListView):
+    model = Competencia
+    template_name = "portfolio/competencia_list.html"
+    context_object_name = "competencias"
+
+class FormacaoListView(ListView):
+    model = Formacao
+    template_name = "portfolio/formacao_list.html"
+    context_object_name = "formacoes"
+
+class MakingOfListView(ListView):
+    model = MakingOf
+    template_name = "portfolio/makingof_list.html"
+    context_object_name = "makingofs"

@@ -1,0 +1,42 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Tecnologias{% endblock %}
+{% block page_title %}Tecnologias{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+    <h2 class="panel-title">Tecnologias</h2>
+
+    {% if tecnologias %}
+        <div class="grid">
+            {% for tecnologia in tecnologias %}
+                <div class="glass card">
+                    {% if tecnologia.logo %}
+                        <img src="{{ tecnologia.logo.url }}" style="max-width:100px; margin-bottom:12px;">
+                    {% endif %}
+
+                    <h3>{{ tecnologia.nome }}</h3>
+
+                    {% if tecnologia.tipo %}
+                        <p class="muted">{{ tecnologia.tipo }}</p>
+                    {% endif %}
+
+                    <p>{{ tecnologia.descricao }}</p>
+
+                    {% if tecnologia.interesse %}
+                        <p><strong>Interesse:</strong> {{ tecnologia.interesse }}/5</p>
+                    {% endif %}
+
+                    {% if tecnologia.link_oficial %}
+                        <a href="{{ tecnologia.link_oficial }}" target="_blank" class="btn btn-primary">
+                            Site oficial
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">Ainda não existem tecnologias.</p>
+    {% endif %}
+</div>
+{% endblock %}

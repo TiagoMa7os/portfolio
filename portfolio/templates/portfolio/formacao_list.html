@@ -1,0 +1,62 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Formações{% endblock %}
+{% block page_title %}Formações{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+
+    <h2 class="panel-title">Formações</h2>
+
+    {% if formacoes %}
+        <div class="grid">
+
+            {% for formacao in formacoes %}
+                <div class="glass card">
+
+                    {% if formacao.imagem %}
+                        <img src="{{ formacao.imagem.url }}"
+                             style="max-width:100%; border-radius:12px; margin-bottom:12px;">
+                    {% endif %}
+
+                    <h3>{{ formacao.nome }}</h3>
+
+                    <p>
+                        <strong>Entidade:</strong>
+                        {{ formacao.entidade }}
+                    </p>
+
+                    <p>
+                        <strong>Início:</strong>
+                        {{ formacao.data_inicio }}
+                    </p>
+
+                    {% if formacao.data_fim %}
+                        <p>
+                            <strong>Fim:</strong>
+                            {{ formacao.data_fim }}
+                        </p>
+                    {% endif %}
+
+                    <p>{{ formacao.descricao }}</p>
+
+                    <h4>Competências</h4>
+
+                    <ul>
+                        {% for competencia in formacao.competencias.all %}
+                            <li>{{ competencia.nome }}</li>
+                        {% empty %}
+                            <li>Sem competências associadas.</li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p class="muted">Ainda não existem formações.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

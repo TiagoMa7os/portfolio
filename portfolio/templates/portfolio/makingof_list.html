@@ -1,0 +1,42 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Making Of{% endblock %}
+{% block page_title %}Making Of{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+
+    <h2 class="panel-title">Making Of</h2>
+
+    {% if makingofs %}
+        <div class="grid">
+
+            {% for making in makingofs %}
+                <div class="glass card">
+
+                    {% if making.foto %}
+                        <img src="{{ making.foto.url }}"
+                             style="max-width:50%; border-radius:12px; margin-bottom:12px;">
+                    {% endif %}
+
+                    <h3>{{ making.titulo }}</h3>
+
+                    <p>
+                        <strong>Data:</strong>
+                        {{ making.data }}
+                    </p>
+
+                    {% if making.descricao %}
+                        <p>{{ making.descricao }}</p>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p class="muted">Ainda não existem registos de making of.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

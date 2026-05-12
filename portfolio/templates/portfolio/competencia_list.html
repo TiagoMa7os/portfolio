@@ -1,0 +1,24 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Competências{% endblock %}
+{% block page_title %}Competências{% endblock %}
+
+{% block content %}
+<div class="glass panel">
+    <h2 class="panel-title">Competências</h2>
+
+    {% if competencias %}
+        <div class="grid">
+            {% for competencia in competencias %}
+                <div class="glass card">
+                    <h3>{{ competencia.nome }}</h3>
+                    <p>{{ competencia.descricao }}</p>
+                    <p><strong>Nível:</strong> {{ competencia.nivel }}/5</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">Ainda não existem competências.</p>
+    {% endif %}
+</div>
+{% endblock %}
