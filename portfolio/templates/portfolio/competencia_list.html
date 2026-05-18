@@ -5,7 +5,14 @@
 
 {% block content %}
 <div class="glass panel">
-    <h2 class="panel-title">Competências</h2>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 class="panel-title" style="margin:0;">Competências</h2>
+
+        {% if is_gestor %}
+            <a href="{% url 'competencia_create' %}" class="btn btn-primary">Nova competência</a>
+        {% endif %}
+    </div>
 
     {% if competencias %}
         <div class="grid">
@@ -14,11 +21,19 @@
                     <h3>{{ competencia.nome }}</h3>
                     <p>{{ competencia.descricao }}</p>
                     <p><strong>Nível:</strong> {{ competencia.nivel }}/5</p>
+
+                    {% if is_gestor %}
+                        <div class="actions" style="justify-content:flex-start;">
+                            <a href="{% url 'competencia_update' competencia.pk %}" class="btn btn-edit">Editar</a>
+                            <a href="{% url 'competencia_delete' competencia.pk %}" class="btn btn-delete">Apagar</a>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
     {% else %}
         <p class="muted">Ainda não existem competências.</p>
     {% endif %}
+
 </div>
 {% endblock %}

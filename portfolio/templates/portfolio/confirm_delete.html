@@ -1,20 +1,32 @@
 {% extends "portfolio/base.html" %}
 
-{% block title %}Apagar{% endblock %}
-{% block page_title %}Apagar{% endblock %}
+{% block title %}Confirmar eliminação{% endblock %}
+{% block page_title %}Confirmar eliminação{% endblock %}
 
 {% block content %}
-<div class="glass panel">
-    <h2 class="panel-title">Confirmar remoção</h2>
+<div class="glass panel" style="max-width:500px; margin:0 auto; text-align:center;">
 
-    <p>Tens a certeza que queres apagar <strong>{{ object }}</strong>?</p>
+    <div style="font-size:3rem; margin-bottom:16px;">⚠️</div>
+
+    <h2 class="panel-title">Tens a certeza?</h2>
+
+    <p style="margin-bottom:24px;">
+        Vais eliminar
+        <strong>
+            {% if object.nome %}{{ object.nome }}
+            {% elif object.titulo %}{{ object.titulo }}
+            {% else %}este registo{% endif %}
+        </strong>.
+        Esta ação não pode ser desfeita.
+    </p>
 
     <form method="post">
         {% csrf_token %}
-        <div class="actions">
-            <a href="javascript:history.back()" class="btn btn-neutral">Cancelar</a>
-            <button type="submit" class="btn">Sim, apagar</button>
+        <div class="actions" style="justify-content:center;">
+            <button type="submit" class="btn btn-delete">Sim, eliminar</button>
+            <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
+
 </div>
 {% endblock %}

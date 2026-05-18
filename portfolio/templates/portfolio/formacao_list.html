@@ -6,7 +6,13 @@
 {% block content %}
 <div class="glass panel">
 
-    <h2 class="panel-title">Formações</h2>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 class="panel-title" style="margin:0;">Formações</h2>
+
+        {% if is_gestor %}
+            <a href="{% url 'formacao_create' %}" class="btn btn-primary">Nova formação</a>
+        {% endif %}
+    </div>
 
     {% if formacoes %}
         <div class="grid">
@@ -49,6 +55,13 @@
                             <li>Sem competências associadas.</li>
                         {% endfor %}
                     </ul>
+
+                    {% if is_gestor %}
+                        <div class="actions" style="justify-content:flex-start; margin-top:14px;">
+                            <a href="{% url 'formacao_update' formacao.pk %}" class="btn btn-edit">Editar</a>
+                            <a href="{% url 'formacao_delete' formacao.pk %}" class="btn btn-delete">Apagar</a>
+                        </div>
+                    {% endif %}
 
                 </div>
             {% endfor %}

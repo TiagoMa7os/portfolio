@@ -6,7 +6,13 @@
 {% block content %}
 <div class="glass panel">
 
-    <h2 class="panel-title">Making Of</h2>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 class="panel-title" style="margin:0;">Making Of</h2>
+
+        {% if is_gestor %}
+            <a href="{% url 'makingof_create' %}" class="btn btn-primary">Novo registo</a>
+        {% endif %}
+    </div>
 
     {% if makingofs %}
         <div class="grid">
@@ -28,6 +34,13 @@
 
                     {% if making.descricao %}
                         <p>{{ making.descricao }}</p>
+                    {% endif %}
+
+                    {% if is_gestor %}
+                        <div class="actions" style="justify-content:flex-start; margin-top:14px;">
+                            <a href="{% url 'makingof_update' making.pk %}" class="btn btn-edit">Editar</a>
+                            <a href="{% url 'makingof_delete' making.pk %}" class="btn btn-delete">Apagar</a>
+                        </div>
                     {% endif %}
 
                 </div>

@@ -6,7 +6,13 @@
 {% block content %}
 <div class="glass panel">
 
-    <h2 class="panel-title">Tecnologias</h2>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 class="panel-title" style="margin:0;">Tecnologias</h2>
+
+        {% if is_gestor %}
+            <a href="{% url 'tecnologia_create' %}" class="btn btn-primary">Nova tecnologia</a>
+        {% endif %}
+    </div>
 
     <div class="filtros">
         <label for="tecnologiaDropdown">Escolhe uma tecnologia:</label>
@@ -52,14 +58,18 @@
                         </p>
                     {% endif %}
 
-                    {% if tecnologia.link_oficial %}
-                        <a
-                            href="{{ tecnologia.link_oficial }}"
-                            target="_blank"
-                            class="btn btn-primary">
-                            Site oficial
-                        </a>
-                    {% endif %}
+                    <div class="actions" style="justify-content:flex-start;">
+                        {% if tecnologia.link_oficial %}
+                            <a href="{{ tecnologia.link_oficial }}" target="_blank" class="btn btn-primary">
+                                Site oficial
+                            </a>
+                        {% endif %}
+
+                        {% if is_gestor %}
+                            <a href="{% url 'tecnologia_update' tecnologia.pk %}" class="btn btn-edit">Editar</a>
+                            <a href="{% url 'tecnologia_delete' tecnologia.pk %}" class="btn btn-delete">Apagar</a>
+                        {% endif %}
+                    </div>
 
                 </div>
             {% endfor %}

@@ -429,3 +429,94 @@ tr:hover {
     max-width:100px;
     margin-bottom:12px;
 }
+
+
+/* ── Botões CRUD ─────────────────────────────── */
+
+.btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: var(--accent, #4f8ef7);
+    color: #fff;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    color: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-edit {
+    background: rgba(255, 200, 60, 0.18);
+    color: #ffc83c;
+    border: 1px solid rgba(255, 200, 60, 0.35);
+}
+
+.btn-delete {
+    background: rgba(255, 80, 80, 0.15);
+    color: #ff5050;
+    border: 1px solid rgba(255, 80, 80, 0.35);
+}
+
+/* ── Formulários ─────────────────────────────── */
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.07);
+    color: inherit;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent, #4f8ef7);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.field-error {
+    color: #ff5050;
+    font-size: 0.82rem;
+}
+
+.muted {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
