@@ -1,5 +1,5 @@
 from django import forms
-from .models import Projeto, Tecnologia, Competencia, Formacao
+from .models import Projeto, Tecnologia, Competencia, Formacao, MakingOf
 
 
 class BaseStyledForm(forms.ModelForm):
@@ -38,4 +38,13 @@ class FormacaoForm(BaseStyledForm):
         widgets = {
             "data_inicio": forms.DateInput(attrs={"type": "date", "class": "input"}),
             "data_fim": forms.DateInput(attrs={"type": "date", "class": "input"}),
+        }
+
+
+class MakingOfForm(BaseStyledForm):
+    class Meta:
+        model = MakingOf
+        fields = "__all__"
+        widgets = {
+            "data": forms.DateInput(attrs={"type": "date", "class": "input"}),
         }

@@ -25,9 +25,9 @@
         Fluxo: o utilizador faz um pedido → a view processa → o model vai à base de dados → os dados são enviados para o template → o utilizador vê a página.
     </p>
 
+    {% comment %}
     <h3>Desenho da arquitetura</h3>
     <img src="{% static 'portfolio/img/mvt.jpg' %}" width="400">
-
 
     <h3>Vídeo explicativo</h3>
 
@@ -37,6 +37,7 @@
         frameborder="0"
         allowfullscreen>
     </iframe>
+    {% endcomment %}
 
 
     <h2>Modelação</h2>
@@ -50,8 +51,10 @@
         Os relacionamentos entre entidades são feitos com ForeignKey e ManyToMany.
     </p>
 
+    {% comment %}
     <h3>Diagrama ER</h3>
     <img src="{% static 'portfolio/img/er.jpg' %}" width="400">
+    {% endcomment %}
 
 
     <h2>Tecnologias</h2>
@@ -84,7 +87,9 @@
 
     <p>Mapa de navegação da aplicação:</p>
 
+    {% comment %}
     <img src="{% static 'portfolio/img/estrutura.jpg' %}" width="400">
+    {% endcomment %}
 
 
     <h2>Repositório GitHub</h2>

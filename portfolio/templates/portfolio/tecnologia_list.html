@@ -5,14 +5,34 @@
 
 {% block content %}
 <div class="glass panel">
+
     <h2 class="panel-title">Tecnologias</h2>
 
-    {% if tecnologias %}
-        <div class="grid">
+    <div class="filtros">
+        <label for="tecnologiaDropdown">Escolhe uma tecnologia:</label>
+
+        <select id="tecnologiaDropdown">
+            <option value="todas">Todas as tecnologias</option>
+
             {% for tecnologia in tecnologias %}
-                <div class="glass card">
+                <option value="tec-{{ tecnologia.id }}">
+                    {{ tecnologia.nome }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {% if tecnologias %}
+        <div class="grid tecnologias-grid">
+
+            {% for tecnologia in tecnologias %}
+                <div class="glass card tecnologia-card" id="tec-{{ tecnologia.id }}">
+
                     {% if tecnologia.logo %}
-                        <img src="{{ tecnologia.logo.url }}" style="max-width:100px; margin-bottom:12px;">
+                        <img
+                            src="{{ tecnologia.logo.url }}"
+                            alt="{{ tecnologia.nome }}"
+                            class="tecnologia-logo">
                     {% endif %}
 
                     <h3>{{ tecnologia.nome }}</h3>
@@ -21,22 +41,50 @@
                         <p class="muted">{{ tecnologia.tipo }}</p>
                     {% endif %}
 
-                    <p>{{ tecnologia.descricao }}</p>
+                    {% if tecnologia.descricao %}
+                        <p>{{ tecnologia.descricao }}</p>
+                    {% endif %}
 
                     {% if tecnologia.interesse %}
-                        <p><strong>Interesse:</strong> {{ tecnologia.interesse }}/5</p>
+                        <p>
+                            <strong>Interesse:</strong>
+                            {{ tecnologia.interesse }}/5
+                        </p>
                     {% endif %}
 
                     {% if tecnologia.link_oficial %}
-                        <a href="{{ tecnologia.link_oficial }}" target="_blank" class="btn btn-primary">
+                        <a
+                            href="{{ tecnologia.link_oficial }}"
+                            target="_blank"
+                            class="btn btn-primary">
                             Site oficial
                         </a>
                     {% endif %}
+
                 </div>
             {% endfor %}
+
         </div>
     {% else %}
         <p class="muted">Ainda não existem tecnologias.</p>
     {% endif %}
+
 </div>
+
+<script>
+    const dropdown = document.getElementById("tecnologiaDropdown");
+    const cards = document.querySelectorAll(".tecnologia-card");
+
+    dropdown.addEventListener("change", function () {
+        const valor = this.value;
+
+        cards.forEach(card => {
+            if (valor === "todas" || card.id === valor) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+</script>
 {% endblock %}

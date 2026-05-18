@@ -5,5 +5,5 @@ urlpatterns = [
     path("login/", views.login_view, name="login"),
     path("logout/", views.logout_view, name="logout"),
     path("registo/", views.registo_view, name="registo"),
-    path("magic-login/<uidb64>/<token>/", views.magic_login_confirm, name="magic_login_confirm"),
-]
+    path("magic-login/<str:uidb64>/<path:token>/",views.magic_login_confirm,name="magic_login_confirm"),
+    ]

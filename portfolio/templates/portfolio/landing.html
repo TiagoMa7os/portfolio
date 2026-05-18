@@ -1,0 +1,215 @@
+{% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block title %}Tiago Matos — Portfólio{% endblock %}
+{% block page_title %}Início{% endblock %}
+
+{% block content %}
+
+<style>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    min-height: calc(100vh - 120px);
+    padding: 48px 0;
+    max-width: 900px;
+  }
+
+  .hero-text {
+    flex: 1;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    color: var(--text);
+  }
+
+  .hero-text h1 span {
+    color: var(--primary);
+  }
+
+  .hero-text h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0 0 28px;
+    max-width: 420px;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .buttons .btn {
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .buttons .btn:first-child {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+  }
+
+  .buttons .btn:first-child:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+  }
+
+  .buttons .btn:last-child {
+    background: white;
+    color: var(--text);
+    border: 1.5px solid var(--border);
+  }
+
+  .buttons .btn:last-child:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  .social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #f8fafc;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    transition: all 0.18s;
+  }
+
+  .social-links a:hover {
+    background: #eff6ff;
+    color: var(--primary);
+    border-color: #bfdbfe;
+    transform: translateY(-1px);
+  }
+
+  /* Avatar */
+  .hero-image {
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-image::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px dashed #bfdbfe;
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-image img {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border: 3px solid #bfdbfe;
+    box-shadow: 0 20px 60px rgba(37,99,235,0.15);
+    object-fit: contain;
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column-reverse;
+      text-align: center;
+      gap: 32px;
+      min-height: auto;
+      padding: 32px 0;
+    }
+    .hero-text p { max-width: 100%; }
+    .buttons, .social-links { justify-content: center; }
+    .hero-image img { width: 180px; height: 180px; }
+    .hero-image::before { width: 220px; height: 220px; }
+  }
+</style>
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <h1><span>Tiago</span> Matos</h1>
+
+    <h2>Estudante de Informática de Gestão</h2>
+
+    <p>
+      Portfólio pessoal com projetos desenvolvidos ao longo do curso,
+      tecnologias utilizadas e artigos sobre aprendizagens.
+    </p>
+
+    <div class="buttons">
+      <a href="{% url 'projeto_list' %}" class="btn">
+        Ver Projetos
+      </a>
+    </div>
+
+    <div class="social-links">
+      <a href="https://github.com/TiagoMa7os/portfolio" target="_blank">
+        GitHub
+      </a>
+
+      <a href="https://www.linkedin.com/in/tiago-matos-361679202/" target="_blank">
+        LinkedIn
+      </a>
+
+      <a href="mailto:tiagomiguelmatos@gmail.com">
+        Email
+      </a>
+    </div>
+
+  </div>
+
+  <div class="hero-image">
+    <img
+      src="https://api.dicebear.com/9.x/avataaars/svg?accessories[]&clothing=blazerAndShirt,blazerAndSweater,collarAndSweater,graphicShirt,hoodie,shirtCrewNeck,shirtScoopNeck,shirtVNeck&eyebrows=default&eyes=default&facialHair[]&mouth=default,smile&skinColor=edb98a,ffdbb4&top=shortFlat,shortRound,shortWaved&seed=Aidan"
+      alt="Avatar">
+  </div>
+
+</section>
+
+{% endblock %}

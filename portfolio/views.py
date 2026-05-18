@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from django.shortcuts import render
 from .models import Projeto, Tecnologia, Competencia, Formacao, MakingOf
 from .form import ProjetoForm
 
@@ -97,13 +97,26 @@ Estas alterações permitiram tornar a aplicação mais organizada, funcional e 
 
         return context
 
-class HomeView(TemplateView):
-    template_name = "portfolio/home.html"
+def landing(request):
+    return render(
+        request,
+        "portfolio/landing.html"
+    )
 
 class TecnologiaListView(ListView):
     model = Tecnologia
     template_name = "portfolio/tecnologia_list.html"
     context_object_name = "tecnologias"
+
+    def get_queryset(self):
+        queryset = Tecnologia.objects.all()
+
+        tipo = self.request.GET.get("tipo")
+
+        if tipo:
+            queryset = queryset.filter(tipo=tipo)
+
+        return queryset
 
 class CompetenciaListView(ListView):
     model = Competencia

@@ -26,10 +26,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-*3@uq((876v+q-#1$o+f*k1@6fsd0wm#j^_fy8mex17q(_da(1"
+SECRET_KEY = env("SECRET_KEY", default="django-insecure-build-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -88,9 +88,8 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db("DATABASE_URL")
+    "default": env.db("DATABASE_URL", default="sqlite:///db.sqlite3")
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -134,9 +133,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": env("CLOUDINARY_API_KEY"),
-    "API_SECRET": env("CLOUDINARY_API_SECRET"),
+    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME", default=""),
+    "API_KEY": env("CLOUDINARY_API_KEY", default=""),
+    "API_SECRET": env("CLOUDINARY_API_SECRET", default=""),
 }
 
 STORAGES = {
@@ -162,11 +161,13 @@ MARKDOWNIFY = {
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "tiagomiguelmatos@gmail.com"
-EMAIL_HOST_PASSWORD = "aogd fiec ulvt comh"
+EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SITE_URL = "https://glowing-space-goggles-7vv65p56xpq92xx57-8000.app.github.dev"
+
+SITE_URL = env("SITE_URL", default="")
